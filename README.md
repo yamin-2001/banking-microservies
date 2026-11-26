@@ -740,6 +740,7 @@ banking-microservies/
 ├── README.md                  ← you are here
 ├── .env.example               ← the documented environment template
 ├── .env                       ← your local values (git-ignored)
+├── .gitmodules                ← the service directories are git submodules
 ├── docker-compose.yml         ← PostgreSQL 16 + Redis 7
 ├── postgres-init/             ← Postgres init scripts, mounted into the container
 │   └── 01-create-databases.sql   (creates the five per-service databases)
@@ -831,10 +832,16 @@ Each service follows the same internal shape:
    the host only, and the gateway blocks all `/internal/**` paths.
 8. **The e-mail rate limiter fails open.** If Redis is unreachable, registration is not rate
    limited. Monitor Redis availability.
-9. **The Postgres init scripts live in `postgres-init/`, not `postgres/init/`.** The original
-   `postgres/` directory is owned by `root` and cannot be written to without `sudo`; the compose
-   file mounts `postgres-init/` instead. The old directory is unused and can be removed by an
-   administrator with `sudo rm -rf postgres`.
+9. **The Postgres init scripts live in `postgres-init/`.** The original `postgres/init/` directory
+   belonged to the upstream project; the compose file mounts `postgres-init/` instead, and the old
+   path is gone.
+
+   Only `01-create-databases.sql` remains there. It creates the five databases; the tables inside
+   them are created and kept in shape by Hibernate (`ddl-auto: update`) in each service. The
+   upstream repair scripts (`02-notification-processed-events.sql`, `03-fund-transfer-schema.sql`,
+   `04-repair-schema.sql`) no longer exist and nothing runs them. A database carried over from
+   before the saga flow may still hold a stale check constraint — the affected services' READMEs
+   say which column to drop.
 
 ---
 

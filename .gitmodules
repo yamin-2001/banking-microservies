@@ -1,0 +1,33 @@
+[submodule "account-service"]
+	path = account-service
+	url = https://github.com/yamin-2001/account-service.git
+[submodule "api-gateway"]
+	path = api-gateway
+	url = https://github.com/yamin-2001/api-gateway.git
+[submodule "banking-web-ui"]
+	path = banking-web-ui
+	url = https://github.com/yamin-2001/banking-web-ui.git
+[submodule "charge-fee-service"]
+	path = charge-fee-service
+	url = https://github.com/yamin-2001/charge-fee-service.git
+[submodule "core-banking-service"]
+	path = core-banking-service
+	url = https://github.com/yamin-2001/core-banking-service.git
+[submodule "discovery-service"]
+	path = discovery-service
+	url = https://github.com/yamin-2001/discovery-service.git
+[submodule "event-bus-service"]
+	path = event-bus-service
+	url = https://github.com/yamin-2001/event-bus-service.git
+[submodule "fund-transfer-service"]
+	path = fund-transfer-service
+	url = https://github.com/yamin-2001/fund-transfer-service.git
+[submodule "notification-service"]
+	path = notification-service
+	url = https://github.com/yamin-2001/notification-service.git
+[submodule "otp-service"]
+	path = otp-service
+	url = https://github.com/yamin-2001/otp-service.git
+[submodule "user-service"]
+	path = user-service
+	url = https://github.com/yamin-2001/user-service.git
